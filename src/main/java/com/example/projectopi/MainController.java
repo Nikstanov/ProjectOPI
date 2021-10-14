@@ -18,90 +18,90 @@ public class MainController implements Initializable {
     int exp = 0;
     int level = 1;
     int difficult = 1;
-    int[] array_levels =  {0,2,2,2,2,1,0,0,0,0};
+    int[] arraylevels =  {0,2,2,2,2,1,0,0,0,0};
 
-    int need_exp = 0;
+    int needexp = 0;
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
         ObservableList<String> list = FXCollections.observableArrayList("Синий фон", "Красный фон", "Желтый фон");
-        another_fon.setItems(list);
+        anotherfon.setItems(list);
     }
 
     @FXML
-    private ComboBox<String> another_fon;
+    private ComboBox<String> anotherfon;
 
     @FXML
-    private AnchorPane back_fon;
+    private AnchorPane backfon;
 
     @FXML
-    private AnchorPane forward_fon;
+    private AnchorPane forwardfon;
 
     @FXML
-    public void NewFon(ActionEvent event){
-        switch (another_fon.getValue()) {
+    public void newfon(ActionEvent event){
+        switch (anotherfon.getValue()) {
             case ("Синий фон"):
-                another_fon.setStyle("-fx-background-color: LightBlue;");
-                forward_fon.setStyle("-fx-background-color: SteelBlue;");
-                back_fon.setStyle("-fx-background-color: LightBlue;");
+                anotherfon.setStyle("-fx-background-color: LightBlue;");
+                forwardfon.setStyle("-fx-background-color: SteelBlue;");
+                backfon.setStyle("-fx-background-color: LightBlue;");
                 break;
             case ("Красный фон"):
-                another_fon.setStyle("-fx-background-color: Brown;");
-                forward_fon.setStyle("-fx-background-color: Red;");
-                back_fon.setStyle("-fx-background-color: Brown;");
+                anotherfon.setStyle("-fx-background-color: Brown;");
+                forwardfon.setStyle("-fx-background-color: Red;");
+                backfon.setStyle("-fx-background-color: Brown;");
                 break;
             case ("Желтый фон"):
-                another_fon.setStyle("-fx-background-color: Goldenrod;");
-                forward_fon.setStyle("-fx-background-color: Yellow;");
-                back_fon.setStyle("-fx-background-color: Goldenrod;");
+                anotherfon.setStyle("-fx-background-color: Goldenrod;");
+                forwardfon.setStyle("-fx-background-color: Yellow;");
+                backfon.setStyle("-fx-background-color: Goldenrod;");
                 break;
             default:
-                another_fon.setValue("Error");
+                anotherfon.setValue("Error");
         }
     }
 
     @FXML
-    private Button hard_button;
+    private Button hardbutton;
 
     @FXML
-    private Button start_button;
+    private Button startbutton;
 
     @FXML
-    private Label diff_enough;
+    private Label diffenough;
 
     @FXML
     private void click2(ActionEvent event) {
-        if (!level_enough.isVisible()) {
-            diff_enough.setVisible(false);
+        if (!levelenough.isVisible()) {
+            diffenough.setVisible(false);
             if (difficult == 1) {
-                hard_button.setText("Сложность: Жесть");
+                hardbutton.setText("Сложность: Жесть");
                 difficult = 2;
-                need_exp = 200 * (level - 1) + 100;
+                needexp = 200 * (level - 1) + 100;
 
-                if (array_levels[level] != 2) {
-                    diff_enough.setLayoutX(202);
-                    diff_enough.setText("Пройди хотя бы 2 раза на легком");
-                    diff_enough.setVisible(true);
+                if (arraylevels[level] != 2) {
+                    diffenough.setLayoutX(202);
+                    diffenough.setText("Пройди хотя бы 2 раза на легком");
+                    diffenough.setVisible(true);
                 }
                 else{
-                    if(need_exp > exp){
-                        diff_enough.setText("Недостаточно опыта:" +need_exp);
-                        diff_enough.setVisible(true);
-                        diff_enough.setLayoutX(220);
+                    if(needexp > exp){
+                        diffenough.setText("Недостаточно опыта:" +needexp);
+                        diffenough.setVisible(true);
+                        diffenough.setLayoutX(220);
                     }
                 }
             } else {
-                hard_button.setText("Сложность: Легкий");
+                hardbutton.setText("Сложность: Легкий");
                 difficult = 1;
             }
         }
     }
 
     @FXML
-    private Button level_button;
+    private Button levelbutton;
 
     @FXML
-    private Label level_enough;
+    private Label levelenough;
 
     @FXML
     private void click(ActionEvent event) {
@@ -112,46 +112,46 @@ public class MainController implements Initializable {
             level = 0;
         }
 
-        level_enough.setVisible(false);
+        levelenough.setVisible(false);
 
-        diff_enough.setVisible(false);
-        hard_button.setText("Сложность: Легкий");
+        diffenough.setVisible(false);
+        hardbutton.setText("Сложность: Легкий");
         difficult = 1;
 
-        level_button.setText("Уровень: " + level);
-        need_exp = 200 * (level - 1);
+        levelbutton.setText("Уровень: " + level);
+        needexp = 200 * (level - 1);
         if(level == 0){
-            need_exp = 0;
+            needexp = 0;
         }
 
         if(level != 0) {
-            if (array_levels[level] < 1) {
-                level_enough.setText("Предыдущий уровень");
-                level_enough.setVisible(true);
-                level_enough.setLayoutX(50);
+            if (arraylevels[level] < 1) {
+                levelenough.setText("Предыдущий уровень");
+                levelenough.setVisible(true);
+                levelenough.setLayoutX(50);
             } else {
-                if (exp < need_exp) {
-                    level_enough.setLayoutX(79);
-                    level_enough.setText("Опыт: " + need_exp);
-                    level_enough.setVisible(true);
+                if (exp < needexp) {
+                    levelenough.setLayoutX(79);
+                    levelenough.setText("Опыт: " + needexp);
+                    levelenough.setVisible(true);
                 }
             }
         }
     }
 
     @FXML
-    private Label exp_menu;
+    private Label expmenu;
 
     @FXML
     private void click1(ActionEvent event) {
         exp = exp + 10;
-        exp_menu.setText("Ваш опыт: " + exp);
-        exp_menu.setText("Ваш опыт: " + exp);
-        if(level_enough.isVisible() && exp >= need_exp && level != 0 && array_levels[level] >= 1){    // Изменения при достаточном опыте для уровня
-            level_enough.setVisible(false);
+        expmenu.setText("Ваш опыт: " + exp);
+        expmenu.setText("Ваш опыт: " + exp);
+        if(levelenough.isVisible() && exp >= needexp && level != 0 && arraylevels[level] >= 1){    // Изменения при достаточном опыте для уровня
+            levelenough.setVisible(false);
         }
-        if(diff_enough.isVisible() && exp >= need_exp && level != 0 && array_levels[level] > 1){  // Измения при достаточном опыте для уровня сложности
-            diff_enough.setVisible(false);
+        if(diffenough.isVisible() && exp >= needexp && level != 0 && arraylevels[level] > 1){  // Измения при достаточном опыте для уровня сложности
+            diffenough.setVisible(false);
         }
     }
 }
