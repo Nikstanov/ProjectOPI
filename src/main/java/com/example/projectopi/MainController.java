@@ -147,12 +147,12 @@ public class MainController implements Initializable {
         Exp = Exp + 10;
         ExpMenu.setText("Ваш опыт: " + Exp);
         ExpMenu.setText("Ваш опыт: " + Exp);
-        if(LevelEnough.isVisible() & Exp >= NeedExp & level != 0){    // Изменения при достаточном опыте для уровня
+        if(LevelEnough.isVisible() && Exp >= NeedExp && level != 0){    // Изменения при достаточном опыте для уровня
             if (ArrayLevels[level] >= 1) {
                 LevelEnough.setVisible(false);
             }
         }
-        if(DiffEnough.isVisible() & Exp >= NeedExp & level != 0){  // Измения при достаточном опыте для уровня сложности
+        if(DiffEnough.isVisible() && Exp >= NeedExp && level != 0){  // Измения при достаточном опыте для уровня сложности
             if (ArrayLevels[level] > 1) {
                 DiffEnough.setVisible(false);
             }
