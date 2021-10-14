@@ -55,6 +55,8 @@ public class MainController implements Initializable {
                 ForwardFon.setStyle("-fx-background-color: Yellow;");
                 BackFon.setStyle("-fx-background-color: Goldenrod;");
                 break;
+            default:
+                AnotherFon.setValue("Error");
         }
     }
 
@@ -145,7 +147,7 @@ public class MainController implements Initializable {
         Exp = Exp + 10;
         ExpMenu.setText("Ваш опыт: " + Exp);
         ExpMenu.setText("Ваш опыт: " + Exp);
-        if(LevelEnough.isVisible()) {
+        if(LevelEnough.isVisible()) {    // Изменения при достаточном опыте для уровня
             if (Exp >= NeedExp) {
                 if (level != 0) {
                     if (ArrayLevels[level] >= 1) {
@@ -154,7 +156,7 @@ public class MainController implements Initializable {
                 }
             }
         }
-        if(DiffEnough.isVisible()){
+        if(DiffEnough.isVisible()){  // Измения при достаточном опыте для уровня сложности
             if (Exp >= NeedExp) {
                 if (level != 0) {
                     if (ArrayLevels[level] > 1) {
