@@ -79,19 +79,17 @@ public class MainController implements Initializable {
                 difficult = 2;
                 needexp = 200 * (level - 1) + 100;
 
-                if(level != 0){
-                  if (arraylevels[level] != 2) {
+                if (arraylevels[level] != 2  && level != 0) {
                     diffenough.setLayoutX(202);
                     diffenough.setText("Пройди хотя бы 2 раза на легком");
                     diffenough.setVisible(true);
-                  }
-                  else{
-                      if(needexp > exp){
+                }
+                else{
+                    if(needexp > exp && level != 0){
                         diffenough.setText("Недостаточно опыта:" +needexp);
                         diffenough.setVisible(true);
                         diffenough.setLayoutX(220);
-                      }
-                  }
+                    }
                 }
             } else {
                 hardbutton.setText("Сложность: Легкий");
