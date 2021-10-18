@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -78,17 +79,19 @@ public class MainController implements Initializable {
                 difficult = 2;
                 needexp = 200 * (level - 1) + 100;
 
-                if (arraylevels[level] != 2) {
+                if(level != 0){
+                  if (arraylevels[level] != 2) {
                     diffenough.setLayoutX(202);
                     diffenough.setText("Пройди хотя бы 2 раза на легком");
                     diffenough.setVisible(true);
-                }
-                else{
-                    if(needexp > exp){
+                  }
+                  else{
+                      if(needexp > exp){
                         diffenough.setText("Недостаточно опыта:" +needexp);
                         diffenough.setVisible(true);
                         diffenough.setLayoutX(220);
-                    }
+                      }
+                  }
                 }
             } else {
                 hardbutton.setText("Сложность: Легкий");
@@ -144,14 +147,25 @@ public class MainController implements Initializable {
 
     @FXML
     private void click1(ActionEvent event) {
-        exp = exp + 10;
-        expmenu.setText("Ваш опыт: " + exp);
-        expmenu.setText("Ваш опыт: " + exp);
-        if(levelenough.isVisible() && exp >= needexp && level != 0 && arraylevels[level] >= 1){    // Изменения при достаточном опыте для уровня
-            levelenough.setVisible(false);
+        if(!levelenough.isVisible() && !diffenough.isVisible()) {
+            exp = exp + 10;
+            expmenu.setText("Ваш опыт: " + exp);
+            expmenu.setText("Ваш опыт: " + exp);
+            if (levelenough.isVisible() && exp >= needexp && level != 0 && arraylevels[level] >= 1) {    // Изменения при достаточном опыте для уровня
+                levelenough.setVisible(false);
+            }
+            if (diffenough.isVisible() && exp >= needexp && level != 0 && arraylevels[level] > 1) {  // Измения при достаточном опыте для уровня сложности
+                diffenough.setVisible(false);
+            }
         }
-        if(diffenough.isVisible() && exp >= needexp && level != 0 && arraylevels[level] > 1){  // Измения при достаточном опыте для уровня сложности
-            diffenough.setVisible(false);
+        else{
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+
+            alert.setTitle("Some troubles");
+            alert.setHeaderText(null);
+            alert.setContentText("Проверьте уровень и сложность");
+
+            alert.showAndWait();
         }
     }
 }
